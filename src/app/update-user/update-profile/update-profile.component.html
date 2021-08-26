@@ -1,0 +1,81 @@
+<app-head></app-head>
+<app-nav></app-nav>
+<app-header></app-header>
+<div class="register-area" style="background-color:rgb(249, 249, 249);">
+  <div class="container">
+    <div class="col-md-3 col-xs-0"></div>
+    <div class="col-md-6 col-xs-12 login-blocks">
+      <h2>Update account </h2>
+      <form [formGroup]="updateForm" (ngSubmit)="updateProfile()" id="updateForm">
+        <div class="form-group">
+          <label for="username">username</label>
+          <input style=" border: 2px solid #cdc2c2;" disabled type="text" formControlName="username"
+                 [(ngModel)]="user.username" id="username">
+        </div>
+        <div class="form-group">
+          <label for="fullname">Fullname</label>
+          <input style=" border: 2px solid #cdc2c2;" type="text" formControlName="fullname" [(ngModel)]="user.fullname"
+                 id="fullname">
+          <div
+            *ngIf="updateForm.get('fullname').invalid && (updateForm.get('fullname').dirty || updateForm.get('fullname').touched)">
+            <div *ngIf="updateForm.get('fullname').errors.required" style="color: red">
+              Enter Your fullname
+            </div>
+            <div *ngIf="updateForm.get('fullname').hasError('pattern')" style="color: red">
+              Fullname does not contain special characters
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input style=" border: 2px solid #cdc2c2;" type="text" formControlName="phone" [(ngModel)]="user.phone"
+                 id="phone">
+          <div
+            *ngIf="updateForm.get('phone').invalid && (updateForm.get('phone').dirty || updateForm.get('phone').touched)">
+            <div *ngIf="updateForm.get('phone').errors.required" style="color: red">
+              Enter your phoneNumber
+            </div>
+            <div *ngIf="updateForm.get('phone').hasError('pattern')" style="color: red">
+              Wrong your phone number, please try again
+            </div>
+          </div>
+          <div class="formError" *ngIf="isPhoneExists" style="color: red">
+            This phone number already exists
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="useraddress">Address</label>
+          <input style=" border: 2px solid #cdc2c2;" type="text" formControlName="userAddress"
+                 [(ngModel)]="user.userAddress" id="useraddress">
+          <div
+            *ngIf="updateForm.get('userAddress').invalid && (updateForm.get('userAddress').dirty || updateForm.get('userAddress').touched)">
+            <div *ngIf="updateForm.get('userAddress').errors.required" style="color: red">
+              Enter Your Address
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input style=" border: 2px solid #cdc2c2;" type="email" formControlName="email" [(ngModel)]="user.email"
+                 id="email">
+          <div
+            *ngIf="updateForm.get('email').invalid && (updateForm.get('email').dirty || updateForm.get('email').touched)">
+            <div *ngIf="updateForm.get('email').errors.required" style="color: red">
+              Không để trống dòng này!
+            </div>
+            <div *ngIf="updateForm.get('email').errors.email" style="color: red">
+              Email không hợp lệ
+            </div>
+          </div>
+          <div class="formError" *ngIf="isEmailExists" style="color: red">
+            This email already exists
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-default" type="submit" [disabled]="updateForm.invalid">Edit profile</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

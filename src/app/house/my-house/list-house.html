@@ -1,0 +1,80 @@
+<app-nav></app-nav>
+<div class="page-head">
+  <div class="container">
+    <div class="row">
+      <div class="page-head-content">
+        <h1 class="page-title"></h1>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End page header -->
+
+<!-- property area -->
+<div style="text-align: center"><h3>YOUR HOUSE</h3></div>
+<div class="content-area recent-property" style="background-color: #FFF;">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-12 pr-30 padding-top-40 properties-page user-properties">
+
+
+
+        <div class="section">
+          <div *ngIf="myHouses.length==0" style="text-align: center">
+            <a style="color: red">You haven't posted anything yet !</a>
+          </div>
+          <div *ngIf="myHouses.length!=0">
+            <div id="list-type" class="proerty-th-list">
+              <div class="col-md-4 p0" *ngFor="let house of myHouses">
+                <div class="box-two proerty-item" style="height: 270px" >
+                  <div class="item-thumb" style="width: 40%;height: 100%">
+                    <!--                    <a ><img src="{{house.imagesList[0]}}"></a>-->
+                    <a><img style="width:100%;height: 100%" src="{{house.imagesList&&house.imagesList[0]?.linkImage}}"></a>
+                  </div>
+                  <div class="item-entry overflow" style="width: 60%;height: 100%">
+                    <h5 style="height:10%"><a> {{house.houseName}} </a>  <button (click)="setHouseId(house.houseId)" mat-button routerLink="/statistics" color="accent">Analysis</button></h5>
+                    <div class="dot-hr"></div>
+                    <span  class="pull-left"><b> Area :</b> {{house.area}} </span> m2
+                    <span
+                      class="proerty-price pull-right">{{house.pricePerDay | currency : 'USD' :true : '1.0-3'}}</span>
+
+                    <p style="display: none;height: 45%">{{house.description}} </p>
+
+                    <div class="property-icon" style="position: absolute;margin-left: 0px;width: 57%">
+                      <div style="display: inline-block">
+                      <img src="assets/img/icon/bed.png"> {{house.bedroomQuantity}}|
+                      <img src="assets/img/icon/shawer.png"> {{house.bathroomQuantity}}|
+                      <img src="assets/img/icon/status-white.png"> {{house.houseStatus}}
+                      </div>
+                      <div class="dealer-action pull-right " style="display: inline-block">
+                        <button mat-button color="primary" (click)="changeBlankStatus(house.houseId)">Blank</button>
+                        <button style="color:saddlebrown;" (click)="changeUpgradeStatus(house.houseId)">Upgrade</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="pull-right">
+            <div class="pagination">
+              <ul>
+                <!--                  <li><a href="#">Prev</a></li>-->
+                <!--                  <li><a href="#">1</a></li>-->
+                <!--                  <li><a href="#">2</a></li>-->
+                <!--                  <li><a href="#">3</a></li>-->
+                <!--                  <li><a href="#">4</a></li>-->
+                <!--                  <li><a href="#">Next</a></li>-->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

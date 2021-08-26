@@ -1,0 +1,133 @@
+
+<app-head></app-head>
+<app-nav></app-nav>
+<app-header></app-header>
+<div class="register-area" style="background-color:rgb(249, 249, 249);">
+<div class="container">
+  <div class="col-md-3 col-xs-0"></div>
+  <div class="col-md-6 col-xs-12 login-blocks">
+    <h2>New account </h2>
+    <form [formGroup]="registerForm" (ngSubmit)="register()" id="registerForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input style=" border: 2px solid #cdc2c2;" type="text" formControlName="username" [(ngModel)]="user.username"
+               id="username">
+        <div
+          *ngIf="registerForm.get('username').invalid && (registerForm.get('username').dirty || registerForm.get('username').touched)">
+          <div *ngIf="registerForm.get('username').errors.required" style="color: red">
+            Enter your username
+          </div>
+          <div *ngIf="registerForm.get('username').errors.minlength" style="color: red">
+            Minimum 6 characters required
+          </div>
+          <div *ngIf="registerForm.get('username').errors.maxlength" style="color: red">
+            Maximum 6 characters required
+          </div>
+          <div *ngIf="registerForm.get('username').hasError('pattern')" style="color: red">
+            Username does not contain special characters
+          </div>
+        </div>
+        <div class="formError" *ngIf="isUsernameExists" style="color: red">
+          This username already exists
+        </div>
+        </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input style=" border: 2px solid #cdc2c2;" type="password" formControlName="password"
+               [(ngModel)]="user.password" id="password">
+        <div
+          *ngIf="registerForm.get('password').invalid && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+          <div *ngIf="registerForm.get('password').errors.required" style="color: red">
+            Enter your password
+          </div>
+          <div *ngIf="registerForm.get('password').errors.minlength" style="color: red">
+            Minimum 6 characters required
+          </div>
+          <div *ngIf="registerForm.get('password').errors.maxlength"style="color: red">
+            Maximum 6 characters required
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">ConfirmPassword</label>
+        <input style=" border: 2px solid #cdc2c2;" type="password" formControlName="confirmPassword"
+               id="confirmPassword">
+        <div
+          *ngIf="registerForm.get('confirmPassword').touched">
+          <div *ngIf="registerForm.get('confirmPassword').value != registerForm.get('password').value" style="color: red">
+            Confirm password not match
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="fullname">Fullname</label>
+        <input style=" border: 2px solid #cdc2c2;" type="text" formControlName="fullname" [(ngModel)]="user.fullname"
+               id="fullname">
+        <div
+          *ngIf="registerForm.get('fullname').invalid && (registerForm.get('fullname').dirty || registerForm.get('fullname').touched)">
+          <div *ngIf="registerForm.get('fullname').errors.required" style="color: red">
+            Enter Your fullname
+          </div>
+          <div *ngIf="registerForm.get('fullname').hasError('pattern')" style="color: red">
+            Fullname does not contain special characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input style=" border: 2px solid #cdc2c2;" type="text" formControlName="phone" [(ngModel)]="user.phone"
+               id="phone">
+        <div
+          *ngIf="registerForm.get('phone').invalid && (registerForm.get('phone').dirty || registerForm.get('phone').touched)">
+          <div *ngIf="registerForm.get('phone').errors.required" style="color: red">
+            Enter your phone number
+          </div>
+          <div *ngIf="registerForm.get('phone').hasError('pattern')" style="color: red">
+            Wrong your phone number, please try again.
+          </div>
+        </div>
+        <div class="formError" *ngIf="isPhoneExists" style="color: red">
+          This phone number already exists
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="useraddress">Address</label>
+        <input style=" border: 2px solid #cdc2c2;" type="text" formControlName="userAddress"
+               [(ngModel)]="user.userAddress" id="useraddress">
+        <div
+          *ngIf="registerForm.get('userAddress').invalid && (registerForm.get('userAddress').dirty || registerForm.get('userAddress').touched)">
+          <div *ngIf="registerForm.get('userAddress').errors.required" style="color: red">
+            Enter your address
+          </div>
+          <div *ngIf="registerForm.get('userAddress').hasError('pattern')" style="color: red">
+            User address does not contain special characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input style=" border: 2px solid #cdc2c2;" type="email" formControlName="email" [(ngModel)]="user.email"
+               id="email">
+        <div
+          *ngIf="registerForm.get('email').invalid && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+          <div *ngIf="registerForm.get('email').errors.required" style="color: red">
+            Enter your enmail
+          </div>
+          <div *ngIf="registerForm.get('email').errors.email" style="color: red">
+            Wrong email, please try again.
+          </div>
+        </div>
+        <div class="formError" *ngIf="isEmailExists" style="color: red">
+          This email already exists
+        </div>
+      </div>
+      <div style="text-align: center">
+        <button class="btn btn-default" type="submit" [disabled]="registerForm.invalid">Register</button>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+<app-footer></app-footer>
+

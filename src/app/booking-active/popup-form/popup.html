@@ -1,0 +1,27 @@
+
+  <h2 mat-dialog-title>
+    <span><img style="height: 30px" src="https://image.flaticon.com/icons/png/512/1156/1156949.png" alt=""> </span>
+    BOOKING NOTIFICATION
+  </h2>
+
+  <mat-dialog-content class="mat-typography">
+    <!--<strong *ngIf="notify=='valid'"> :  </strong>-->
+    <p *ngIf="notify=='inValidInStartDate'"><span><img style="height: 30px"
+                                                       src="https://image.flaticon.com/icons/png/512/2738/2738459.png"
+                                                       alt=""></span>Please choose starting date </p>
+    <p *ngIf="notify=='inValidInEndDate'"><span><img style="height: 30px"
+                                                     src="https://image.flaticon.com/icons/png/512/2738/2738459.png"> </span>Please
+      choose end date</p>
+    <p *ngIf="notify=='inValidInStartDate2'">Start date must be smaller than end date</p>
+    <p *ngIf="notify=='valid'"> Do you sure to confirm this booking <span><img style="height: 33px"
+                                                                               src="https://image.flaticon.com/icons/png/512/826/826962.png"
+                                                                               alt=""></span></p>
+    <p *ngIf="notify=='success'"> Thanks you for booking with us <span><img style="height: 25px"
+                                                                            src="https://image.flaticon.com/icons/png/512/1201/1201958.png"
+                                                                            alt=""></span></p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close *ngIf="notify!='success'" [mat-dialog-close]="false">CANCEL</button>
+    <button *ngIf="notify=='valid'" mat-button [mat-dialog-close]="true" cdkFocusInitial>CONFIRM</button>
+  </mat-dialog-actions>
+

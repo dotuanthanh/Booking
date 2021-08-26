@@ -1,0 +1,105 @@
+<app-head></app-head>
+<app-nav></app-nav>
+<app-header></app-header>
+
+<!--<div class="container">-->
+
+<!--  <table class="table">-->
+
+<!--    <tr>-->
+<!--      <th scope="col">#</th>-->
+<!--      <th scope="col">House</th>-->
+<!--      <th scope="col">Address</th>-->
+<!--      <td scope="col">Prices</td>-->
+<!--      <th scope="col">Check-in</th>-->
+<!--      <th scope="col">Check-out</th>-->
+<!--      <th scope="col">Total</th>-->
+<!--      <th scope="col">Images</th>-->
+<!--      >-->
+<!--    </tr>-->
+<!--    <tbody>-->
+<!--    <tr *ngFor="let booking of dataSource, let i = index">-->
+<!--      <th scope="row">{{++i}}</th>-->
+<!--      <td style="color: orange;font-weight: bold" class="clickable"-->
+<!--          routerLink="/houses/detail/{{booking.house.houseId}}">{{booking.house.houseName}}</td>-->
+<!--      <td>{{booking.house.houseAddress}}</td>-->
+<!--      <td>{{booking.house.pricePerDay}}</td>-->
+<!--      <td>{{booking.checkinDate}}</td>-->
+<!--      <td>{{booking.checkoutDate}}</td>-->
+<!--      <td>{{booking.total}}</td>-->
+<!--      <td><img src="{{booking.house.imagesList[0]}}"></td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
+<!--</div>-->
+
+
+
+<!-- property area -->
+<div class="content-area recent-property" style="background-color: #FFF;">
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-md-12 pr-30 padding-top-40 properties-page user-properties">
+        <div style="padding-left: 400px; color: orange"><h3>YOUR BOOKING HISTORY</h3></div>
+
+        <div class="section">
+          <div class="page-subheader sorting pl0 pr-10">
+            <div class="items-per-page pull-right">
+              <div class="sel">
+              </div><!--/ .sel-->
+            </div><!--/ .items-per-page-->
+          </div>
+
+        </div>
+
+        <div class="section">
+          <div *ngIf="dataSource.length==0" style="text-align: center">
+            <a style="color: red">You haven't rental history !</a>
+          </div>
+          <div *ngIf="dataSource.length!=0">
+            <div id="list-type" class="proerty-th-list">
+              <div class="col-md-4 p0" *ngFor="let booking of dataSource">
+                <div class="box-two proerty-item" >
+                  <div class="item-thumb">
+                    <img routerLink="/houses/detail/{{booking.house.houseId}}" src="{{booking.house.imagesList[0]}}" class="clickable">
+                  </div>
+                  <!--                  <td><img src="{{booking.house.imagesList[0]}}"></td>-->
+                  <div class="item-entry overflow" style="margin-bottom: 20px">
+                   <h5>
+                     <a routerLink="/houses/detail/{{booking.house.houseId}}">{{booking.house.houseName}}</a>
+                   </h5>
+                    <div class="dot-hr"></div>
+                    <span class="pull-left"><b> Address :</b> {{booking.house.houseAddress}} </span>
+                    <span
+                      class="proerty-price pull-right">Total {{booking.total| currency : 'USD' :true : '1.0-3'}}
+                    </span>
+                  </div>
+
+                  <div class="item-entry overflow">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <div><b>Check in</b></div>
+                        <div><b>Checkout out</b></div>
+                        <div><b>Price per day</b></div>
+                      </div>
+                      <div class="col-mg-3">
+                        <div>{{booking.checkinDate}}</div>
+                        <div>{{booking.checkoutDate}}</div>
+                        <div>{{booking.house.pricePerDay}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
+

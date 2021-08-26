@@ -1,0 +1,18 @@
+
+<div>
+  <mat-form-field appearance="fill" color="primary" class="datePicker1" >
+    <mat-label>Start Date</mat-label>
+    <input matInput (dateChange)="validateForCheckoutDate()" [(ngModel)]="checkInDate" [matDatepicker]="picker1" [matDatepickerFilter]="dateFilter" readonly >
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+  </div>
+  <div>
+  <mat-form-field appearance="fill" class="datePicker1">
+    <mat-label>End Date</mat-label>
+    <input  matInput [matDatepicker]="picker2" [(ngModel)]="checkOutDate" [matDatepickerFilter]="dateFilter" [min]="minDate" [max]="maxDate" readonly>
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+</div>
+<popup-button (submitEvt)="doBooking($event)"></popup-button>

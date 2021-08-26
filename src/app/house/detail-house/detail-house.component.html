@@ -1,0 +1,368 @@
+<body xmlns="http://www.w3.org/1999/html">
+<app-head></app-head>
+<app-nav></app-nav>
+<!-- Body content -->
+<style>
+  div {
+    visibility: visible;
+  }
+
+  a {
+    visibility: visible;
+  }
+</style>
+<div class="page-head">
+  <div class="container">
+    <div class="row">
+      <div class="page-head-content">
+        <h1 class="page-title"></h1>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End page header -->
+
+<!-- property area -->
+<div class="content-area single-property" style="background-color: #FCFCFC;">&nbsp;
+  <div class="container">
+
+    <div class="clearfix padding-top-40">
+
+      <div class="col-md-8 single-property-content prp-style-1 ">
+        <div class="row">
+          <div class="light-slide-item">
+            <div class="clearfix">
+              <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                <li *ngFor=" let image of images">
+                  <img style="height: 377px;width: 650px" src="{{image}}"/>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="single-property-wrapper" *ngIf="house">
+          <div class="single-property-header">
+            <h1 class="property-title pull-left">{{house.houseName}}</h1> <br>
+            <span class="property-price pull-right">{{house.pricePerDay | currency : 'USD' :true : '1.0-3'}}</span>
+
+          </div>
+
+          <div class="property-meta entry-meta clearfix ">
+
+            <div class="col-xs-6 col-sm-2 col-md-2 p-b-15">
+                                    <span class="property-info icon-area">
+                                        <img src="assets/img/icon/house-type-orange.png">
+                                    </span>
+              <span class="property-info-entry">
+                                        <span class="property-info-label">Type</span>
+                                        <span class="property-info-value"
+                                              class="property-info-value">{{house.type}}</span>
+                                    </span>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2 p-b-15">
+                                    <span class="property-info-icon ">
+                                        <img src="assets/img/icon/status-orange.png">
+                                    </span>
+              <span class="property-info-entry">
+                                        <span class="property-info-label">Status</span>
+                                        <span *ngIf="house.houseStatus=='rent'"
+                                              class="property-info-value">For rent</span>
+                                        <span *ngIf="house.houseStatus=='blank'"
+                                              class="property-info-value">For rent</span>
+                                        <span *ngIf="house.houseStatus=='upgrade'"
+                                              class="property-info-value">Repair</span>
+                                    </span>
+            </div>
+
+            <div class="col-xs-6 col-sm-2 col-md-2 p-b-15">
+                                    <span class="property-info icon-area">
+                                        <img src="assets/img/icon/room-orange.png">
+                                    </span>
+              <span class="property-info-entry">
+                                        <span class="property-info-label">Area</span>
+                                        <span class="property-info-value"
+                                              class="property-info-value">{{house.area}} m2</span>
+                                    </span>
+            </div>
+
+            <div class="col-xs-6 col-sm-2 col-md-2 p-b-15">
+                                    <span class="property-info-icon icon-bed">
+                                        <img src="assets/img/icon/bed-orange.png">
+                                    </span>
+              <span class="property-info-entry">
+                                        <span class="property-info-label">Bedrooms</span>
+                                        <span class="property-info-value">{{house.bedroomQuantity}}</span>
+                                    </span>
+            </div>
+
+
+            <div class="col-xs-6 col-sm-2 col-md-2 p-b-15">
+                                    <span class="property-info-icon icon-bath">
+                                        <img src="assets/img/icon/shawer-orange.png">
+                                    </span>
+              <span class="property-info-entry">
+                                        <span class="property-info-label">Bathrooms</span>
+                                        <span class="property-info-value">{{house.bathroomQuantity}}</span>
+                                    </span>
+            </div>
+
+            <!--            <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">-->
+            <!--                                    <span class="property-info-icon icon-garage">-->
+            <!--                                        <img src="assets/img/icon/os-orange.png">-->
+            <!--                                    </span>-->
+            <!--              <span class="property-info-entry">-->
+            <!--                                        <span class="property-info-label">Garages</span>-->
+            <!--                                        <span class="property-info-value">2</span>-->
+            <!--                                    </span>-->
+            <!--            </div>-->
+
+
+          </div>
+          <!-- .property-meta -->
+
+          <div class="section">
+            <h4 class="s-property-title">Description</h4>
+            <div class="s-property-content">
+              <p>{{house.description}} </p>
+            </div>
+          </div>
+
+          <section id="comment-form" class="add-comments" [(ngModel)]="allowToReview" [hidden]="allowToReview==false">
+            <h4 class="text-uppercase wow fadeInLeft animated">Review this house</h4>
+            <br>
+            <form (ngSubmit)="createNewReview()">
+              <div class="row wow fadeInLeft animated">
+                <div class="col-sm-12">
+                  <label for="rating">Rating <span class="required">*</span>
+                  </label>
+                  <section class='rating-widget' (click)="alert()" >
+                    <!-- Rating Stars Box -->
+                    <div class='rating-stars text-center' id="rating">
+                      <ul id='stars'>
+                        <li class='star' title='Poor' data-value='1' value="1">
+                          <i class='fa fa-star fa-fw'></i>
+                        </li>
+                        <li class='star' title='Fair' data-value='2' value="2">
+                          <i class='fa fa-star fa-fw'></i>
+                        </li>
+                        <li class='star' title='Good' data-value='3' value="3">
+                          <i class='fa fa-star fa-fw'></i>
+                        </li>
+                        <li class='star' title='Excellent' data-value='4' value="4">
+                          <i class='fa fa-star fa-fw'></i>
+                        </li>
+                        <li class='star' title='WOW!!!' data-value='5' value="5">
+                          <i class='fa fa-star fa-fw'></i>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class='success-box text-center'>
+                      <div class='text-message'></div>
+                    </div>
+
+                  </section>
+                </div>
+              </div>
+
+
+              <div class="row wow fadeInLeft animated">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="comment"> Your Comment </label>
+                    <textarea class="form-control textarea" id="comment" name="comment" rows="4"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row wow fadeInLeft animated">
+                <div class="col-sm-12 text-right">
+                  <button class="btn btn-primary" type="submit"><i class="fa fa-comment-o"></i> Post review</button>
+                </div>
+              </div>
+            </form>
+          </section>
+
+          <div class="section">
+            <h4 class="s-property-title">Rating</h4>
+
+            <div class="rating">
+              <span class="rating-num" *ngIf="totalRate!='NaN'">{{totalRate}}</span>
+              <span class="rating-num" *ngIf="totalRate=='NaN'">0</span>
+              <div style="
+              background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png');
+              font-size: 0;
+              height: 21px;
+              line-height: 0;
+              overflow: hidden;
+              text-indent: -999em;
+              width: 110px;
+              margin: 0 auto;">
+                <span [ngStyle]="{'width': (totalRate/5)*100+'%'}" style="
+                background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png') repeat-x;
+                background-position: 0 100%;
+                float: left;
+                height: 21px;
+                display:block;
+                }"></span>
+              </div>
+              <div class="rating-users">
+                <i class="pe-7s-add-user"></i>{{countReview}} total vote
+              </div>
+            </div>
+
+
+            <div class="histo">
+              <div class="five histo-rate">
+                <span class="histo-star"><i class="active fa fa-star-o"></i> 5</span>
+                <span class="bar-block"   [(ngModel)]="five"[ngStyle]="{'width': ((fiveStar/countReview)*80) + '%'}">
+                      <span id="bar-five" class="bar">
+                          <span>{{fiveStar}}</span>&nbsp;
+                      </span>
+                    </span>
+              </div>
+
+              <div class="four histo-rate">
+                <span class="histo-star"><i class="active fa fa-star-o"></i> 4  </span>
+                <span class="bar-block"   [ngStyle]="{'width':((fourStar/countReview)*80) + '%'}">
+                      <span id="bar-four" class="bar">
+                      <span>{{fourStar}}</span>&nbsp;
+                      </span>
+                    </span>
+              </div>
+
+              <div class="three histo-rate">
+                <span class="histo-star"><i class="active fa fa-star-o"></i> 3 </span>
+                <span class="bar-block"  [ngStyle]="{'width': ((threeStar/countReview)*80) + '%'}">
+                      <span id="bar-three" class="bar">
+                        <span>{{threeStar}}</span>&nbsp;
+                      </span>
+                    </span>
+              </div>
+
+              <div class="two histo-rate">
+                <span class="histo-star"><i class="active fa fa-star-o"></i> 2  </span>
+                <span class="bar-block" [ngStyle]="{'width': ((twoStar/countReview)*80) + '%'}">
+                    <span id="bar-two" class="bar">
+                      <span>{{twoStar}}</span>&nbsp;
+                    </span>
+                  </span>
+              </div>
+
+              <div class="one histo-rate">
+                <span class="histo-star"><i class="active fa fa-star-o"></i> 1  </span>
+                <span class="bar-block" [ngStyle]="{'width': ((oneStar/countReview)*80) + '%'}">
+                    <span id="bar-one" class="bar">
+                      <span>{{oneStar}}</span>&nbsp;
+                   </span>
+                  </span>
+              </div>
+            </div>
+
+          </div>
+          <!-- End description area  -->
+          <br>
+
+
+        </div>
+      </div>
+
+
+      <div class="col-md-4 p0">
+        <aside class="sidebar sidebar-property blog-asside-right">
+          <div class="dealer-widget" *ngIf="house">
+            <div class="dealer-content">
+              <div class="inner-wrapper">
+
+                <div class="clear">
+                  <div class="col-xs-4 col-sm-4 dealer-face">
+                    <a>
+                      <img src="{{house.users.avatarUrl}}" class="img-circle">
+                    </a>
+                  </div>
+                  <div class="col-xs-8 col-sm-8 ">
+                    <h3 class="dealer-name">
+                      <a>{{house.users.fullname}}</a>
+                    </h3>
+                    <div class="dealer-social-media">
+                      <a class="twitter" target="_blank">
+                        <i class="fa fa-twitter"></i>
+                      </a>
+                      <a class="facebook" target="_blank">
+                        <i class="fa fa-facebook"></i>
+                      </a>
+                      <a class="gplus" target="_blank">
+                        <i class="fa fa-google-plus"></i>
+                      </a>
+                      <a class="linkedin" target="_blank">
+                        <i class="fa fa-linkedin"></i>
+                      </a>
+                      <a class="instagram" target="_blank">
+                        <i class="fa fa-instagram"></i>
+                      </a>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="clear">
+                  <ul class="dealer-contacts">
+                    <li><i class="pe-7s-map-marker strong"> </i> {{house.users.userAddress}}</li>
+                    <li><i class="pe-7s-mail strong"> </i> {{house.users.email}}</li>
+                    <li><i class="pe-7s-call strong"> </i> {{house.users.phone}}</li>
+                  </ul>
+                  <!--                  <p>Duis mollis blandit tempus porttitor curabiturDuis mollis blandit tempus porttitor curabitur , est-->
+                  <!--                    non…</p>-->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default sidebar-menu similar-property-wdg wow fadeInRight animated">
+            <div class="panel-body recent-property-widget">
+              <booking-active></booking-active>
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+    <br>
+    <section id="comments" class="comments wow " style="visibility: visible">
+      <h4 class="text-uppercase wow fadeInLeft animated">{{countReview}} comments</h4>
+
+
+      <div class="row comment" [(ngModel)]="reviewList" *ngFor="let review of reviewList of filteredListReview ; index as i">
+        <div class="col-sm-3 col-md-2 text-center-xs">
+          <p>
+            <img src="{{review.user.avatarUrl}}" class="img-responsive img-circle" alt="">
+          </p>
+        </div>
+        <div class="col-sm-9 col-md-10">
+          <h5 class="text-uppercase">{{review.user.username}}</h5>
+          <p class="posted"><i class="fa fa-clock-o"></i> Post in {{review.postDate}}</p>
+          <p>{{review.comment}}</p>
+          <p> Rate : {{review.rating}} <i class="fa fa-star-o"></i>
+          </p>
+        </div>
+      </div>
+    </section>
+    <div *ngIf="tempRvList.length > 3 " class="pagination" >
+      <ul>
+        <li class="clickable" [class.disabled]="currentPage === 0"><a (click)="previous()">Prev</a></li>
+        <li class="clickable" *ngFor="let page of pageArray" [class.active]="page === currentPage + 1"
+            (click)="goTo(page - 1)"><a>{{ page }}</a></li>
+        <li class="clickable" [class.disabled]="currentPage === numberOfPage - 1"><a (click)="next()">Next</a>
+        </li>
+      </ul>
+    </div>
+    <br><br><br>
+
+  </div>
+</div>
+</body>
+
+
+
+

@@ -1,0 +1,57 @@
+<!--<h1>Login form</h1>-->
+<!--<form [formGroup]="loginForm" (ngSubmit)="login()">-->
+<!--  <div>-->
+<!--    <label for="username">Username:</label>-->
+<!--    <input type="text" formControlName="username" id="username">-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <label for="password">Password:</label>-->
+<!--    <input type="password" formControlName="password" id="password">-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <button>Login</button>-->
+<!--  </div>-->
+<!--</form>-->
+
+
+<app-head></app-head>
+<app-nav></app-nav>
+<app-header></app-header>
+<div class="register-area" style="background-color:rgb(249, 249, 249);">
+  <div class="container">
+    <div class="col-md-3 col-xs-0"></div>
+    <div class="col-md-6 col-xs-12 login-blocks">
+  <h2>Login </h2>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input style=" border: 2px solid #cdc2c2;" type="text" formControlName="username" id="username" >
+      <ng-container *ngIf="loginForm.controls.username.touched">
+        <p *ngIf="loginForm.controls.username?.hasError('required')" style="color: red"> Enter your username </p>
+      </ng-container>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input style=" border: 2px solid #cdc2c2;" type="password" formControlName="password" id="password" required="">
+      <ng-container *ngIf="loginForm.controls.password.touched">
+        <p *ngIf="loginForm.controls.password?.hasError('required')" style="color: red"> Enter your password </p>
+      </ng-container>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-default" [disabled]="loginForm.invalid"> Log in</button>
+      <button class="btn btn-default" routerLink="/register" > Register</button>
+    </div>
+  </form>
+  <br>
+
+<!--  <h2>Social login  </h2>-->
+
+<!--  <p>-->
+<!--    <a class="login-social" href="#"><i class="fa fa-facebook"></i>&nbsp;Facebook</a>-->
+<!--    <a class="login-social" href="#"><i class="fa fa-google-plus"></i>&nbsp;Gmail</a>-->
+<!--    <a class="login-social" href="#"><i class="fa fa-twitter"></i>&nbsp;Twitter</a>-->
+<!--  </p>-->
+</div>
+  </div>
+</div>
+<app-footer></app-footer>

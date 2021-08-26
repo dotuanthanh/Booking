@@ -1,0 +1,41 @@
+
+<h2 mat-dialog-title>
+  <span><img style="height: 20px" src="https://image.flaticon.com/icons/png/512/1156/1156949.png" alt=""> </span>
+SYSTEM  NOTIFICATION
+</h2>
+<mat-dialog-content class="mat-typography">
+<!--  cua house -->
+  <p *ngIf="notify==''"> Do you want to update   ? </p>
+  <p *ngIf="notify=='success'">Everything is update successfully</p>
+  <p *ngIf="notify=='notAllowed'">You cannot change the status of this property because it has already be rented</p>
+<!--  house-->
+
+<!--  update-create user-->
+  <p *ngIf="notify=='createUserSuccess'"> <span><img style="height: 30px" src="https://image.flaticon.com/icons/png/512/934/934218.png" alt=""></span>Create account success </p>
+  <p *ngIf="notify=='createUserSuccess'"><span><img style="height: 25px" src="https://image.flaticon.com/icons/png/512/2107/2107845.png" alt=""></span>Hope you have best experience  </p>
+  <p *ngIf="notify=='updateUserSuccess'"><span><img style="height: 25px" src="https://image.flaticon.com/icons/png/512/1688/1688988.png" alt=""></span>Update successfully</p>
+  <!--  update-create user-->
+
+<!--  booking-->
+  <p *ngIf="notify=='deleteBooking'">Are you sure  you  want to cancel this booking <span><img style="height: 25px" src="https://image.flaticon.com/icons/png/512/4108/4108476.png" alt=""></span></p>
+  <p *ngIf="notify=='deleteSuccess'">Your booking was cancelled successfully <span><img style="height: 25px" src="https://image.flaticon.com/icons/png/512/190/190411.png" alt=""></span></p>
+  <p *ngIf="notify=='cannotDeleteBooking'"> Sorry ! An booking can't not cancel on day before checkin day <span><img style="height: 25px"
+    src="https://image.flaticon.com/icons/png/512/4522/4522205.png" alt=""></span> </p>
+  <!--  booking-->
+<!--  changePassWord-->
+  <p *ngIf="notify=='changePasswordSuccess'">Update your password successful <span><img style="height: 27px" src="https://image.flaticon.com/icons/png/512/3064/3064211.png" alt=""></span></p>
+  <p *ngIf="notify=='changePasswordFail'">Please make sure you put old password correctly  <span><img style="height: 27px" src="https://image.flaticon.com/icons/png/512/2665/2665036.png" alt=""></span></p>
+  <!--  changePassWord-->
+<!--  login-->
+  <p *ngIf="notify=='loginFail'">It seem you put wrong account or password <span><img style="height: 30px" src="https://image.flaticon.com/icons/png/512/2622/2622292.png" alt=""></span></p>
+  <!--  login-->
+  <p *ngIf="notify=='comment'">Thanks for your review </p>
+
+  <p *ngIf="notify=='loginToBooking'">You must login before booking ?</p>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button color="primary" *ngIf="!(notify=='deleteSuccess' || notify=='cannotDeleteBooking' || notify=='loginFail' || notify=='createUserSuccess'||notify=='changePasswordSuccess'||notify=='updateUserSuccess' || notify=='success'||notify=='notAllowed')"  mat-dialog-close>Cancel</button>
+  <button mat-button color="primary" [mat-dialog-close]="true" >OK</button>
+</mat-dialog-actions>
+

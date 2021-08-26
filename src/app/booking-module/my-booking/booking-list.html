@@ -1,0 +1,75 @@
+<app-head></app-head>
+<app-nav></app-nav>
+<app-header></app-header>
+
+<div class="container">
+  <div>
+    <div style="text-align: center"><h3>YOUR BOOKING</h3>
+     <button routerLink="/booking-history" class="navbar-btn nav-button wow bounceInRight login animated"  data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: bounceInRight;">Booking History</button></div>
+    <div *ngIf="dataSource.length==0" style="text-align: center">
+      <a style="color:red;">You havn't booked anything yet!</a>
+    </div>
+    <div *ngIf="dataSource.length!=0">
+      <div class="container">
+        <div class="row">
+          <div class="proerty-th">
+            <div class="col-sm-6 col-md-2 p0">
+              <div><b>#</b></div>
+            </div>
+            <div class="col-sm-6 col-md-2 p0">
+              <div><b>House</b></div>
+            </div>
+            <div class="col-sm-6 col-md-2 p0">
+              <div><b>Start</b></div>
+            </div>
+            <div class="col-sm-6 col-md-2 p0">
+              <div><b>End</b></div>
+            </div>
+            <div class="col-sm-6 col-md-2 p0">
+              <div><b>Total</b></div>
+            </div>
+            <div class="col-sm-6 col-md-2 p0">
+              <div><b>Cancel</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="dot-hr"></div>
+        <div class="row">
+          <div class="proerty-th" *ngFor="let booking of dataSource, let i = index">
+            <ng-container *ngIf="booking.bookingStatus!=1">
+            <div class="col-sm-6 col-md-2 p0">
+              <div>{{i}}</div>
+            </div>
+            <div class="col-sm-6 col-md-2 p0">
+              <div routerLink="/houses/detail/{{booking.house.houseId}}" class="clickable" ><b>{{booking.house.houseName}}</b></div>
+            </div>
+            <div class="col-sm-6 col-md-2 p0">
+              <div>{{booking.checkinDate}}</div>
+            </div>
+            <div class="col-sm-6 col-md-2 p0">
+              <div>{{booking.checkoutDate}}</div>
+            </div>
+            <div class="col-sm-6 col-md-2 p0">
+              <div>{{booking.total | currency : 'USD' :true : '1.0-3'}}</div>
+            </div>
+            <div class="col-sm-6 col-md-2 p0">
+              <div *ngIf="booking.bookingStatus!=-1">
+                <span class="clickable"><img (click)="cannotDelete()" style="height: 20px"
+                           src="https://image.flaticon.com/icons/png/512/3239/3239888.png"
+                           alt=""></span>
+              </div>
+              <div *ngIf="booking.bookingStatus==-1">
+                <span class="clickable"><img (click)="deleteBooking(booking.bookingId)"
+                           style="height: 20px"
+                           src="https://image.flaticon.com/icons/png/512/753/753345.png"
+                           alt=""></span>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+<app-footer></app-footer>

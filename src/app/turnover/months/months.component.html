@@ -1,0 +1,90 @@
+<!--<app-head></app-head>-->
+<app-nav></app-nav>
+<div>
+  <div>
+    <div style="margin-left: 5px" class="left">(usd)</div>
+    <canvas id="myChart" width="800" height="300"></canvas>
+  </div>
+  <div class="container">
+    <div>
+      <div style="text-align: center"><h3>Total booking per each month </h3>
+        <!--        <span>Select month</span>-->
+<!--        <label for="month">Select month : </label>-->
+        <select [(ngModel)]="month" (change)="sort()" name="" id="month">
+          <option [value]="1">JAN</option>
+          <option [value]="2">FEB</option>
+          <option [value]="3">MAR</option>
+          <option [value]="4">APR</option>
+          <option [value]="5">MAY</option>
+          <option [value]="6">JUN</option>
+          <option [value]="7">JUL</option>
+          <option [value]="8">AUG</option>
+          <option [value]="9">SEP</option>
+          <option [value]="10">OCT</option>
+          <option [value]="11">NOV</option>
+          <option [value]="12">DEC</option>
+        </select>
+        <select name="" [(ngModel)]="selectYear" id="" (change)="sort()">
+          <option class="selected" [value]="2021">2021</option>
+          <option [value]="2020">2020</option>
+        </select>
+        <div>
+          <div class="container">
+            <div class="row">
+              <div class="proerty-th">
+                <div class="col-sm-6 col-md-2 p0">
+                  <div><b>#</b></div>
+                </div>
+                <div class="col-sm-6 col-md-2 p0">
+                  <div><b>Username</b></div>
+                </div>
+                <div class="col-sm-6 col-md-2 p0">
+                  <div><b>Phone number</b></div>
+                </div>
+                <div class="col-sm-6 col-md-2 p0">
+                  <div><b>House</b></div>
+                </div>
+                <div class="col-sm-6 col-md-2 p0">
+                  <div><b>Check in date</b></div>
+                </div>
+                <div class="col-sm-6 col-md-2 p0">
+                  <div><b>Total</b></div>
+                </div>
+              </div>
+            </div>
+            <div class="dot-hr"></div>
+            <div class="row" *ngFor="let booking of listBookings, let i = index">
+              <div class="proerty-th" >
+                  <div class="col-sm-6 col-md-2 p0">
+                    <div>{{i}}</div>
+                  </div>
+                  <div class="col-sm-6 col-md-2 p0">
+                    <div>{{booking.users.fullname}}</div>
+                  </div>
+                  <div class="col-sm-6 col-md-2 p0">
+                    <div>{{booking.users.phone}}</div>
+                  </div>
+                  <div class="col-sm-6 col-md-2 p0">
+                    <div class="clickable">
+                      <b>{{booking.house.houseName}}</b></div>
+                  </div>
+                  <div class="col-sm-6 col-md-2 p0">
+                    <div>{{booking.checkinDate}}</div>
+                  </div>
+
+                  <div class="col-sm-6 col-md-2 p0">
+                    <div>{{booking.total | currency : 'USD' :true : '1.0-3'}}</div>
+                  </div>
+                  <div class="col-sm-6 col-md-2 p0">
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <app-footer></app-footer>
+</div>
