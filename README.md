@@ -1,4 +1,6 @@
-# HouseRentals
+# HouseRentals 
+A small project booking room like AirBnb , booking.com
+We use Angular for this project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
 
